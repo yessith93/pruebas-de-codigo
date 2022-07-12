@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #parte1 {
+        background: transparent;
+        margin-bottom: 48px;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      #parte1 .cont_p1{
+          position: relative;
+          max-width: 1440px;
+          margin: 0 auto;
+      }
+      #parte1 .cont_imagen{
+          max-width: 1440px;
+          margin: 0;
+      }
+      #parte1 .imagen{
+          width: 100%;
+          height: 100%;
+      }
+      #parte1 .cont_texto{
+        padding:0 44px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-80%);
+      }
+      #parte1 .degradado_lateral{
+        background: linear-gradient(to right,rgba(0,0,0,0.55) 0,rgba(0,0,0,0.55) 15%,rgba(0,0,0,0) 50%);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;  
+      }
+      #parte1 .titular{
+        margin: 0;
+        margin-bottom: 13px;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 300;
+      }
+      #parte1 p {
+          margin: 0;
+      }
+      #parte1 .texto p{
+        font-size: 1.125rem;
+        Line-height: 1.22222;
+      }
+    </style>
+  </head>
+  <body style="background: black; color: white;">
+    <section id="parte1">
+      <div class="cont_p1">
+        <figure class="cont_imagen">
+          <img class="imagen" src="imagenes/banner.jpeg" alt="imagen banner" />
+        </figure>
+        <div class="degradado_lateral"></div>
+        <div class="cont_texto">
+            <h1 class="titular">
+              
+                <p>El nuevo</p>
+                <p>Mercedes-AMG</p>
+                <p>SL Roadster.</p>
+              
+            </h1>
+              <div class="texto">
+                <p>THE STAR IS REBORN.</p>
+              </div>
+        </div>
+        
+      </div>
+    </section>
+  </body>
+</html>

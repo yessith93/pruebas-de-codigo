@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #galeria {
+        display: flex;
+        gap: 5px;
+        width: 80%;
+        margin: 0 auto;
+      }
+      .cuadro {
+        display: flex;
+        flex-direction: column;
+        height: 250px;
+      }
+      .s1 {
+        align-items: flex-end;
+      }
+      .s2 {
+        align-items: flex-end;
+      }
+      .s4 {
+        justify-content: center;
+      }
+
+      .s1 .contenido {
+        width: 226px;
+      }
+      .s2 .contenido {
+        width: 300px;
+      }
+      .s3 .contenido {
+        width: 361px;
+      }
+      .s4 .contenido {
+        width: 165px;
+      }
+
+      .img {
+        background: gray;
+      }
+      .s1 .img {
+        width: 226px;
+        height: 127px;
+      }
+      .s2 .img {
+        width: 300px;
+        height: 176px;
+      }
+      .s3 .img {
+        width: 361px;
+        height: 203px;
+      }
+      .s4 .img {
+        width: 165px;
+        height: 92px;
+      }
+      .cont_img {
+        width: 100%;
+        height: FIT-CONTENT;
+        position: relative;
+      }
+      .lupa {
+        background: lightblue;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+      .col {
+        border: 0px solid rgba(0, 0, 0, 0);
+        float: left;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -moz-background-clip: padding-box !important;
+        -webkit-background-clip: padding-box !important;
+        background-clip: padding-box !important;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="galeria">
+      <section class="column c1">
+        <section class="cuadro s1">
+          <div class="contenido">
+            <div class="cont_img">
+              <div class="img"></div>
+              <div class="lupa"></div>
+            </div>
+            <p>losdkhfgsdkf fglkdhfgdkl</p>
+          </div>
+        </section>
+        <section class="cuadro s2">
+          <div class="contenido">
+            <div class="cont_img">
+              <div class="img"></div>
+              <div class="lupa"></div>
+            </div>
+            <p>losdkhfgsdkf fglkdhfgdkl</p>
+          </div>
+        </section>
+      </section>
+      <section class="column c2">
+        <section class="cuadro s3">
+          <div class="contenido">
+            <div class="cont_img">
+              <div class="img"></div>
+              <div class="lupa"></div>
+            </div>
+            <p>losdkhfgsdkf fglkdhfgdkl</p>
+          </div>
+        </section>
+        <section class="cuadro s4">
+          <div class="contenido">
+            <div class="cont_img">
+              <div class="img"></div>
+              <div class="lupa"></div>
+            </div>
+            <p>losdkhfgsdkf fglkdhfgdkl</p>
+          </div>
+        </section>
+      </section>
+    </section>
+  </body>
+</html>

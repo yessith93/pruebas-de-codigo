@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: black;
+        color: white;
+      }
+      .cont_titular {
+        margin-bottom: 34px;
+      }
+      .tit1 {
+        font-size: 1.125rem;
+        font-family: "MBCorpoSTitle-Regular-Web", "DaimlerCS-Regular", Helvetica,
+          Arial, sans-serif;
+        line-height: 1.22222;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding-top: 0;
+        padding-bottom: 0.12844em;
+        margin-top: -0.017em;
+        margin-bottom: 0.5em;
+      }
+      .separador {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        width: 40px;
+        clear: both;
+        border-bottom: 1px solid #fff;
+        text-align: left;
+      }
+      .tit2{
+        font-size: 2.25rem;
+        font-family: "MBCorpoATitleCond-Regular-Web","DaimlerCAC-Regular",Helvetica,Arial,sans-serif;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding-top: 0;
+        padding-bottom: 0.05167em;
+        margin-top: 0.50444em;
+      }
+      .texto{
+        font-size: 1rem;
+        font-family: "MBCorpoSTitle-Regular-Web","DaimlerCS-Regular",Helvetica,Arial,sans-serif;
+        line-height: 1.25;
+        -webkit-font-smoothing: antialiased;
+        margin-top: 1.125em;
+      }
+      .cont_select{
+        position: relative;
+        width: fit-content;
+      }
+      select{
+        appearance: none;
+        width: 150px;
+        background: azure;
+      }
+      select + div {
+        background: TRANSPARENT;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10PX;
+        COLOR: GRAY;
+        pointer-events: none;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="cont_titular">
+      <h2 class="tit1">Aspectos destacados del diseño</h2>
+      <hr class="separador" />
+      <div class="tit2">
+        Una entrada triunfal, vayas adonde vayas.
+      </div>
+      <div class="texto">
+        <p>
+          El nuevo Mercedes-AMG SL forma parte de un mito automovilístico y es,
+          por tanto, un claro alegato en favor de las altas prestaciones, de un
+          confort exclusivo y, por supuesto, de un diseño irresistible. Abre la
+          capota de lona y lánzate a descubrir lugares fascinantes y a vivir
+          momentos inolvidables. Regálate tiempo de calidad, tiempo para ti
+          mismo.
+        </p>
+      </div>
+    </div>
+    <div class="cont_select">
+        <select >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <div>▼</div>
+    </div>
+    
+    
+  </body>
+</html>

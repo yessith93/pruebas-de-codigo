@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+  color: #fff;
+  line-height: 1.7;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.slider-container {
+  height: 100vh;
+  /*width: 100vw;*/
+  width: 100%;
+  display: inline-flex;
+  overflow: hidden;
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+  cursor: grab;
+}
+
+.slide {
+  max-height: 100vh;
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  user-select: none;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 60%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.slide h4 {
+  font-size: 1.3rem;
+}
+
+.btn {
+  background-color: #444;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.grabbing .slide img {
+  transform: scale(0.9);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slider-container">
+            <div class="slide">
+              <h2>Airpods</h2>
+              <h4>$199</h4>
+              <img src="https://i.ibb.co/y08W0Jx/image1.png" alt="" />
+              <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="slide">
+              <h2>iPhone 12</h2>
+              <h4>$799</h4>
+              <img src="https://i.ibb.co/NYdGg2q/image2.png" alt="" />
+              <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="slide">
+              <h2>iPad</h2>
+              <h4>$599</h4>
+              <img src="https://i.ibb.co/Jd3t4hQ/image3.png" alt="" />
+              <a href="#" class="btn">Buy Now</a>
+            </div>
+          </div>    
+    </div>
+      <script>
+          /*
+  This JS is from the following project:
+  https://github.com/bushblade/Full-Screen-Touch-Slider
+*/
+
+const slider = document.querySelector('.slider-container'),
+  slides = Array.from(document.querySelectorAll('.slide'))
+
+let isDragging = false,
+  startPos = 0,
+  currentTranslate = 0,
+  prevTranslate = 0,
+  animationID = 0,
+  currentIndex = 0
+
+slides.forEach((slide, index) => {
+  const slideImage = slide.querySelector('img')
+  slideImage.addEventListener('dragstart', (e) => e.preventDefault())
+
+  // Touch events
+  slide.addEventListener('touchstart', touchStart(index))
+  slide.addEventListener('touchend', touchEnd)
+  slide.addEventListener('touchmove', touchMove)
+
+  // Mouse events
+  slide.addEventListener('mousedown', touchStart(index))
+  slide.addEventListener('mouseup', touchEnd)
+  slide.addEventListener('mouseleave', touchEnd)
+  slide.addEventListener('mousemove', touchMove)
+})
+
+// Disable context menu
+window.oncontextmenu = function (event) {
+  event.preventDefault()
+  event.stopPropagation()
+  return false
+}
+
+function touchStart(index) {
+  return function (event) {
+    currentIndex = index
+    startPos = getPositionX(event)
+    isDragging = true
+
+    // https://css-tricks.com/using-requestanimationframe/
+    animationID = requestAnimationFrame(animation)
+    slider.classList.add('grabbing')
+    //console.log(currentIndex)
+  }
+}
+
+function touchEnd() {
+  isDragging = false
+  cancelAnimationFrame(animationID)
+
+  const movedBy = currentTranslate - prevTranslate
+
+  if (movedBy < -100 && currentIndex < (slides.length - 1)) 
+  {currentIndex += 1}
+
+  if (movedBy > 100 && currentIndex > 0) currentIndex -= 1
+
+  setPositionByIndex()
+
+  slider.classList.remove('grabbing')
+}
+
+function touchMove(event) {
+  if (isDragging) {
+    const currentPosition = getPositionX(event)
+    currentTranslate = prevTranslate + currentPosition - startPos
+  }
+}
+
+function getPositionX(event) {
+  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX
+}
+
+function animation() {
+  setSliderPosition()
+  if (isDragging) requestAnimationFrame(animation)
+}
+
+function setSliderPosition() {
+  slider.style.transform = `translateX(${currentTranslate}px)`
+}
+
+function setPositionByIndex() {
+    
+  currentTranslate = currentIndex * -slides[0].clientWidth
+  prevTranslate = currentTranslate
+  setSliderPosition()
+}
+
+      </script>
+</body>
+</html>

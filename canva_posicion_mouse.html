@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding-top: 100px;
+        background: black;
+      }
+      #container {
+        margin: 10px auto 10px auto;
+        border: solid 1px;
+        background: black;
+        position: relative;
+        width: 389px;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .barra_end {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        order:3;
+      }
+      .mensaje{
+        font-family: "MBCorpoSTitle-Regular-Web","DaimlerCS-Regular",sans-serif;
+        font-size: 12px;
+        line-height: 14px;
+        padding-left: 8px;
+        flex: 0 0 auto;
+        color: white;
+        padding:0 8px;
+        display: none;
+      }
+      .puntos {
+        height: 3px;
+        width: 100%;
+        background-image: repeating-linear-gradient(
+          to left,
+          #fff 8px,
+          #fff 10px,
+          transparent 10px,
+          transparent 26px
+        );
+        z-index: 1;
+        flex: 1 1 auto;
+        display: inline-block;
+      }
+      .barra_end::after {
+        content: "";
+        position: relative;
+        right: 4px;
+        display: block;
+        height: 4px;
+        width: 4px;
+        margin-left: 4px;
+        margin-right: 24px;
+        border: 1px solid white;
+        border-radius: 4px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+      }
+      .barra_front {
+        display: flex;
+        align-items: center;
+        width: 0px;
+        order: 1;
+      }
+      .barra{
+        height: 3px;
+        width: 100%;
+        background: #00adef;
+        z-index: 2;
+        transition: 0.2s;
+      }
+      .barra_front::before{
+        content: "";
+        position: relative;
+        right: 0;
+        display: block;
+        height: 5px;
+        width: 5px;
+        margin-left: 24px;
+        border-radius: 4px;
+        flex: 0 0 auto;
+        background: #00adef;
+      }
+      .move {
+        transition: 0.2s;
+        color: deepskyblue;
+        background-color: #fff;
+        border-radius: 50%;
+        border: solid 7px gray;
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+        font-family: monospace;
+        font-size: x-large;
+        padding: 0;
+        line-height: 0px;
+        vertical-align: middle;
+        cursor: pointer;
+        z-index: 2;
+        order:2;
+      }
+      .move:hover {
+        background-color: deepskyblue;
+        border: solid 1px white;
+        height: 42px;
+        width: 42px;
+        color: white;
+      }
+      #container .move:active ~ div .mensaje{
+        display: none;
+      }
+      #container.inicial .end_mensaje,
+      #container.btn_derecha .front_mensaje,
+      #container.btn_izquierda .end_mensaje{
+        display: inline;
+      }
+      .no-seleccionable {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+    <style>
+      .rangeslider {
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      .myslider {
+        -webkit-appearance: none;
+        background: #fcf3cf;
+        width: 100%;
+        height: 20px;
+        opacity: 0.8;
+        margin-top: 100px;
+      }
+
+      .myslider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        cursor: pointer;
+        background: #34495e;
+        width: 33%;
+        height: 20px;
+      }
+
+      .myslider:hover {
+        opacity: 1;
+      }
+
+      .image {
+        position: relative;
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      .image > img {
+        position: absolute;
+        display: none;
+      }
+
+      .image > img.visible,
+      .image > img:first-child {
+        display: block;
+      }
+
+      .sliderOutput > div {
+        margin: 5px;
+        width: 120px;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+      }
+
+      .sliderOutput h6,
+      .sliderOutput p {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image mt-3 mb-3" id="sliderImages">
+      <img
+        src="https://via.placeholder.com/400x100.png?text=Image1"
+        width="400"
+        height="100"
+      />
+      <img
+        src="https://via.placeholder.com/400x100.png?text=Image2"
+        width="400"
+        height="100"
+      />
+      <img
+        src="https://via.placeholder.com/400x100.png?text=Image3"
+        width="400"
+        height="100"
+      />
+    </div>
+    <br />
+    <div id="container" class="inicial">
+        <button class="move no-seleccionable"><></button>
+        <div class="barra_front">
+            <span class="barra"></span>
+            <span class="front_mensaje mensaje">Desplazar para interactuar con la imagen</span>
+        </div>
+        <div class="barra_end">
+            <span class="end_mensaje mensaje">Desplazar para interactuar con la imagen</span>
+            <span class="puntos"></span>
+        </div>
+    </div>
+    <script>
+      /*se identifica la posicion del mouse en el div*/
+      var container = document.getElementById("container");
+      var barra_front = document.querySelector(".barra_front");
+      var barra_end = document.querySelector(".barra_end");
+      var width_end_mensaje = Number(document.querySelector('.end_mensaje').clientWidth);
+      var width_front_mensaje = Number(document.querySelector('.front_mensaje').clientWidth)+25;
+      let isDragging = false; 
+      let istherespace=true;
+      const length_mensaje=width_end_mensaje+width_front_mensaje;
+
+      const btn_move = document.querySelector(".move");
+      btn_move.addEventListener("dragstart", (e) => e.preventDefault());
+
+      for (var i = 0; i < container.children.length; i++) {
+        container.children[i].addEventListener(
+          "mousedown",
+          function (evt) {
+            isDragging = true;
+            oMousePos(container, evt);
+          },
+          false
+        );
+        container.children[i].addEventListener(
+          "touchstart",
+          function (evt) {
+            isDragging = true;
+            oMousePos(container, evt);
+          },
+          false
+        );
+      }
+      container.addEventListener(
+        "mousedown",
+        function (evt) {
+          isDragging = true;
+          oMousePos(container, evt);
+        },
+        false
+      );
+      container.addEventListener(
+        "touchstart",
+        function (evt) {
+          isDragging = true;
+          oMousePos(container, evt);
+        },
+        false
+      );
+      document.addEventListener(
+        "mousemove",
+        function (evt) {
+          if (isDragging) {
+            oMousePos(container, evt);
+          }
+        },
+        false
+      );
+      document.addEventListener(
+        "touchmove",
+        function (evt) {
+          if (isDragging) {
+            oMousePos(container, evt);
+          }
+        },
+        false
+      );
+      document.addEventListener(
+        "mouseup",
+        function () {
+          isDragging = false;
+        },
+        false
+      );
+      document.addEventListener(
+        "touchend",
+        function () {
+          isDragging = false;
+        },
+        false
+      );
+
+      window.addEventListener('resize',()=>{
+        container.classList.remove('btn_izquierda');
+        container.classList.remove('btn_derecha');
+        container.classList.add('inicial');
+        barra_front.removeAttribute('style');
+        barra_end.removeAttribute('style');
+      })
+
+      function oMousePos(container, evt) {
+        var ClientRect = container.getBoundingClientRect();
+        var touch_position = evt.type.includes('mouse') ? evt.pageX : evt.touches[0].clientX
+        let espacio_inicial = Number(Math.round(touch_position - ClientRect.left));
+        espacio_inicial-=20;
+        let movimiento_final =container.clientWidth - (espacio_inicial+btn_move.clientWidth)
+
+        var images = document.getElementById("sliderImages");
+        /*oculta todas las imagenes */
+        for (var i = 0; i < images.children.length; i++) {
+          images.children[i].style.display = "none";
+        }
+        /*identifica y muestra la imagen correspondiente */
+        if (espacio_inicial > 0 && espacio_inicial < container.clientWidth) {
+          i = Math.floor(
+            espacio_inicial / (container.clientWidth / images.children.length)
+          );
+          barra_front.style.width = espacio_inicial + "px";
+          barra_end.style.width = movimiento_final + "px";
+        } else if (espacio_inicial <= 0) {
+          i = 0;
+        } else if ((movimiento) => container.clientWidth) {
+          i = images.children.length - 1;
+        }
+        //muestra y oculta el mensaje 
+        container.classList.remove('inicial');
+        container.classList.remove('btn_izquierda');
+        container.classList.remove('btn_derecha');
+        if(espacio_inicial>(container.clientWidth/2)){
+            if(length_mensaje<espacio_inicial){
+              container.classList.add('btn_derecha');
+            }
+        }else{
+          if(length_mensaje<movimiento_final){
+            container.classList.add('btn_izquierda');
+          }
+        }
+
+        images.children[i].style.display = "block";
+      }
+    </script>
+  </body>
+</html>

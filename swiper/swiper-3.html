@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 50%;
+      }
+      .slideChange-tab {
+         width: fit-content;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+          <div data-history="1" class="swiper-slide">
+            <!-- <figure class="img-wrap">
+              <img
+                class="desktop"
+                src="/suzuki/site/artic/20220407/imag/foto_0000010820220407154354/foto_0000000520220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="1899550419"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+              <img
+                class="mobile"
+                src="/suzuki/site/artic/20220407/imag/foto_0000003620220407154354/foto_0000000420220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="2592735000"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+            </figure> -->
+            <div class="cont-tit">
+              <h2 class="tit">
+                Mejora el rendimiento en caminos de baja adherencia mediante un
+                control óptimo del motor, la transmisión y el frenado. La opción
+                Hill Descent Control brinda al conductor mayor tranquilidad al
+                mantener velocidades bajas en pendientes pronunciadas.
+              </h2>
+            </div>
+          </div>
+          <div data-history="1" class="swiper-slide">
+            <!-- <figure class="img-wrap">
+              <img
+                class="desktop"
+                src="/suzuki/site/artic/20220407/imag/foto_0000010820220407154354/foto_0000000520220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="1899550419"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+              <img
+                class="mobile"
+                src="/suzuki/site/artic/20220407/imag/foto_0000003620220407154354/foto_0000000420220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="2592735000"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+            </figure> -->
+            <div class="cont-tit">
+              <h2 class="tit">
+                Mejora el rendimiento en caminos de baja adherencia mediante un
+                control óptimo del motor, la transmisión y el frenado. La opción
+                Hill Descent Control brinda al conductor mayor tranquilidad al
+                mantener velocidades bajas en pendientes pronunciadas.
+              </h2>
+            </div>
+          </div>
+          <div data-history="1" class="swiper-slide">
+            <!-- <figure class="img-wrap">
+              <img
+                class="desktop"
+                src="/suzuki/site/artic/20220407/imag/foto_0000010820220407154354/foto_0000000520220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="1899550419"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+              <img
+                class="mobile"
+                src="/suzuki/site/artic/20220407/imag/foto_0000003620220407154354/foto_0000000420220315222650.jpg"
+                alt="Evoltis"
+                data-pagespeed-url-hash="2592735000"
+                onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              />
+            </figure> -->
+            <div class="cont-tit">
+              <h2 class="tit">
+                Mejora el rendimiento en caminos de baja adherencia mediante un
+                control óptimo del motor, la transmisión y el frenado. La opción
+                Hill Descent Control brinda al conductor mayor tranquilidad al
+                mantener velocidades bajas en pendientes pronunciadas.
+              </h2>
+            </div>
+          </div>
+          
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper mySwiper-2">
+      <div class="swiper-wrapper">
+        <button class="tablink1 slideChange-tab swiper-slide">Sistema de Infoentretenimiento</button>
+        <button class="tablink1 slideChange-tab swiper-slide">Sistema de Infoentretenimiento</button>
+        <button class="tablink1 slideChange-tab swiper-slide">Sistema de Infoentretenimiento</button>
+      </div>
+      <div class="swiper-button-next-2"></div>
+      <div class="swiper-button-prev-2"></div>
+      <div class="swiper-pagination-2"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 50,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+      var swiper2 = new Swiper(".mySwiper-2", {
+        spaceBetween: 50,
+        slidesPerView: 'auto',
+        // centeredSlides: true,
+        navigation: {
+          nextEl: ".swiper-button-next-2",
+          prevEl: ".swiper-button-prev-2",
+        },
+        pagination: {
+          el: ".swiper-pagination-2",
+        },
+      });
+      swiper.controller.control = this.swiper2;
+      swiper2.controller.control = this.swiper;
+    </script>
+  </body>
+</html>
