@@ -84,7 +84,7 @@
 
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="../librerias/progressbar/progressbar.js" async></script>
+    <script src="../librerias/progressbar/progressbar.js" ></script>
     <!-- Initialize Swiper -->
     <script>
       let remainingProgress;
@@ -95,6 +95,7 @@
       var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
         centeredSlides: true,
+        loop:true,
         autoplay: {
           delay: durationTime,
           disableOnInteraction: false,
@@ -114,17 +115,6 @@
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
-        },
-        on:{
-          slideChangeTransitionStart:function(event){
-             progressComplete();
-          },
-          slideChange: function(event){
-            Progress(this.realIndex+1)
-            if(!swiper.autoplay.running){
-              swiper.autoplay.start();
-            }
-          },
         },
       });
       
@@ -157,6 +147,7 @@
             if(swiper.autoplay.running){
               swiper.autoplay.stop();
               progressbar.stop()
+              console.log(remainingProgress)
             }else{
               progressComplete();
               swiper.autoplay.start();
@@ -165,10 +156,17 @@
               }});
             }
           }
-            
         })
       });
-        
+      swiper.on('slideChangeTransitionStart',function(event){
+        progressComplete();
+      })
+      swiper.on('slideChange', function(event){
+        Progress(this.realIndex+1)
+        if(!swiper.autoplay.running){
+          swiper.autoplay.start();
+        }
+      })
     </script>
   </body>
 </html>
