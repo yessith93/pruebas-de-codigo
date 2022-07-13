@@ -90,7 +90,6 @@
       let remainingProgress;
       let progressbar;
       let missingTime;
-      let actual = 0;
       let durationTime = 2500;
       var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
@@ -143,21 +142,25 @@
       }
       document.querySelectorAll('.swiper-pagination-bullet').forEach(element => {
         element.addEventListener('click',()=>{
+          let controller_timer;
           if(element.classList.contains('swiper-pagination-bullet-active')){
             if(swiper.autoplay.running){
               swiper.autoplay.stop();
               progressbar.stop()
               missingTime = remainingProgress * durationTime / 360;
-              console.log(missingTime);
+              console.log(typeof controller_timer);
+              if(typeof controller_timer == "number") {
+                window.clearTimeout(controller_timer);
+              }
             }else{
               progressComplete();
-              swiper.autoplay.start();
               progressbar.animate(1, {duration: missingTime, step: function(state, circle, attachment) {
                 remainingProgress = state.offset;
               }});
-              setTimeout(() => {
+              controller_timer = setTimeout(() => {
                 swiper.slideNext();
               }, missingTime);
+              console.log(controller_timer);
             }
           }
         })
