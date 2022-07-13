@@ -147,21 +147,24 @@
             if(swiper.autoplay.running){
               swiper.autoplay.stop();
               progressbar.stop()
-              console.log(remainingProgress)
+              missingTime = remainingProgress * durationTime / 360;
+              console.log(missingTime);
             }else{
               progressComplete();
               swiper.autoplay.start();
-              progressbar.animate(1, {duration: durationTime, step: function(state, circle, attachment) {
+              progressbar.animate(1, {duration: missingTime, step: function(state, circle, attachment) {
                 remainingProgress = state.offset;
               }});
+              setTimeout(() => {
+                swiper.slideNext();
+              }, missingTime);
             }
           }
         })
       });
-      swiper.on('slideChangeTransitionStart',function(event){
-        progressComplete();
-      })
+      Progress(1);
       swiper.on('slideChange', function(event){
+        progressComplete();
         Progress(this.realIndex+1)
         if(!swiper.autoplay.running){
           swiper.autoplay.start();
