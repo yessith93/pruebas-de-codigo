@@ -137,27 +137,21 @@
         return bar;
       }
       function progressComplete() {
-          document.querySelectorAll(`.swiper-pagination div:not(.swiper-pagination-bullet-active)`).forEach(element => {
+          document.querySelectorAll(`.swiper-pagination div`).forEach(element => {
             element.innerHTML = "";
           });
       }
       document.querySelectorAll('.swiper-pagination-bullet').forEach(element => {
         element.addEventListener('click',()=>{
           if(element.classList.contains('swiper-pagination-bullet-active')){
+            console.log(swiper.autoplay.running)
             if(swiper.autoplay.running){
               swiper.autoplay.stop();
               progressbar.stop()
-              missingTime = remainingProgress * durationTime / 360;
-              console.log(missingTime);
             }else{
               progressComplete();
               swiper.autoplay.start();
-              progressbar.animate(1, {duration: missingTime, step: function(state, circle, attachment) {
-                remainingProgress = state.offset;
-              }});
-              setTimeout(() => {
-                swiper.slideNext();
-              }, missingTime);
+              Progress(swiper.activeIndex);
             }
           }
         })
