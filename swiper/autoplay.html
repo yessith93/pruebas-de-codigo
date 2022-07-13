@@ -96,7 +96,7 @@
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 2500,
+          delay: durationTime,
           disableOnInteraction: false,
         },
         pagination: {
@@ -121,15 +121,18 @@
           },
           slideChange: function(event){
             Progress(this.realIndex+1)
+            if(!swiper.autoplay.running){
+              swiper.autoplay.start();
+            }
           },
         },
       });
       
       function Progress(index){
         progressbar = createProgress(`#container${index}`);
-            progressbar.animate(1, {duration: durationTime, step: function(state, circle, attachment) {
-              remainingProgress = state.offset;
-            }});
+        progressbar.animate(1, {duration: durationTime, step: function(state, circle, attachment) {
+          remainingProgress = state.offset;
+        }});
       }
       
       function createProgress(container) {
@@ -153,10 +156,13 @@
           if(element.classList.contains('swiper-pagination-bullet-active')){
             if(swiper.autoplay.running){
               swiper.autoplay.stop();
-              console.log('se pauso')
+              progressbar.stop()
             }else{
+              progressComplete();
               swiper.autoplay.start();
-              console.log('se renaudo')
+              progressbar.animate(1, {duration: durationTime, step: function(state, circle, attachment) {
+                remainingProgress = state.offset;
+              }});
             }
           }
             
